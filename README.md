@@ -1,63 +1,72 @@
 # VoiceMedAgent
 
-#VoiceMedAgent – Overview
-VoiceMedAgent is a proof-of-concept (POC) application that demonstrates a voice-driven workflow using several Azure services. It listens to user speech, transcribes it, analyzes intent, and then takes automated actions or returns relevant data—entirely by voice.
+**VoiceMedAgent** demonstrates a voice-driven workflow using several Azure services.  
+It listens to user speech, transcribes it, analyzes intent, and then takes automated actions or returns relevant data — **entirely by voice**.
 
-Speech Capture (User → Application/Device):
-The user speaks into a device or application. Audio is captured and prepared for transcription.
+---
 
-Speech-to-Text (Azure AI Speech):
-The audio is sent to Azure’s Speech service, which returns text along with a confidence score indicating transcription accuracy.
+## How It Works
 
-#Confidence Scoring & Retry Loop:
+### 1. Speech Capture (User → Application/Device)
+- The user speaks into a device or application.  
+- Audio is captured and prepared for transcription.
 
-If High Confidence, the system proceeds to the next step.
-If Low Confidence, the user is prompted to retry or clarify their request.
-Transcription Processing:
-The validated transcript is passed along for query embedding and further analysis.
+### 2. Speech-to-Text (Azure AI Speech)
+- Audio is sent to **Azure’s Speech** service.  
+- Returns text with a **confidence score** indicating transcription accuracy.
 
-#Query Embeddings & AI Search:
+### 3. Confidence Scoring & Retry Loop
+- **High Confidence**: Moves to the next step.  
+- **Low Confidence**: Prompts the user to retry or clarify.  
+- **Transcription Processing**: Validated transcript is forwarded for query embedding and further analysis.
 
-Query Embeddings: The text is transformed into vector embeddings (e.g., using Azure OpenAI).
-Azure AI Search: These embeddings are used to find the most relevant documents or data in your store.
-Slot Matching / Intent Extraction:
-Using the search results and any additional AI logic, the system extracts user commands or specific entities (slots) (e.g., user’s name, action to perform, etc.).
+### 4. Query Embeddings & AI Search
+- **Query Embeddings**: Converts text into vector embeddings (e.g., via **Azure OpenAI**).  
+- **Azure AI Search**: Uses embeddings to find relevant documents/data.  
+- **Slot Matching / Intent Extraction**: Identifies user commands or entities (e.g., user name, action).
 
-#Feedback & Actions:
+### 5. Feedback & Actions
+- **If confidence is high**: Perform the requested action (e.g., “move user,” “add user,” “update record”).  
+- **If clarification needed**: Ask the user to restate or provide extra details.
 
-If confidence is high, the action (e.g., “move user,” “add user,” “update record”) proceeds.
-If further clarification is needed, the user is notified to restate or provide additional info.
-Data Storage & Monitoring:
+### 6. Data Storage & Monitoring
+- **Cosmos DB** or **SQL** logs query IDs, confidence scores, response times, and results.  
+- Use logs for **analytics**, **troubleshooting**, and **performance tuning**.
 
-Query IDs, confidence scores, response times, and retrieval results can be logged to Cosmos DB or SQL for monitoring.
-These logs help with analytics, troubleshooting, and performance tuning.
-Key Benefits
-Hands-Free Interaction: Allows users to operate via voice commands.
-Robust Error Handling: Confidence checks ensure low-confidence transcriptions prompt the user to speak again.
-Extendable Embeddings: You can switch to other embedding providers or vector databases as needed.
-Scalable Search: Azure AI Search scales with the data volume while still returning relevant results quickly.
-Data Logging & Monitoring: Storing logs helps track usage patterns, response times, and success rates.
-Typical Use Cases
-Healthcare: Retrieve patient info or schedule updates via voice commands.
-Customer Support: Guide agents through knowledge bases by spoken queries.
-Workforce Management: Perform user/group updates (e.g., “move user from one team to another”) hands-free.
-Field Operations: Voice-based info lookups while on the go, without needing a keyboard.
-#Getting Started
-Clone the Repo:
+---
 
-bash
-Copy
-Edit
+## Key Benefits
+
+- **Hands-Free Interaction**: Issue commands via voice.  
+- **Robust Error Handling**: Confidence checks prompt re-tries on low scores.  
+- **Extendable Embeddings**: Swap in other embedding/vector services.  
+- **Scalable Search**: Azure AI Search manages large data sets efficiently.  
+- **Data Logging & Monitoring**: Track usage, response times, and success rates.
+
+---
+
+## Typical Use Cases
+
+- **Healthcare**: Quickly retrieve patient info or schedule updates.  
+- **Customer Support**: Guide agents through knowledge bases using voice queries.  
+- **Workforce Management**: Move or add users to groups effortlessly.  
+- **Field Operations**: On-the-go info lookups without a keyboard.
+
+---
+
+## Getting Started
+
+### 1. Clone the Repo
+```bash
 git clone https://github.com/<YourOrg>/vociemedagent.git
 cd vociemedagent
-Set Up Environment:
 
-Create a .env file with your Azure Speech, Azure OpenAI, Azure Search, and database credentials (e.g., Cosmos DB).
-Install required Python packages (pip install -r requirements.txt).
-Prepare Your Data:
 
-(Optional) Insert any initial documents or records in your database for testing (e.g., user listings, knowledge articles).
-Run the Application:
-
-Start with python app.py.
-Speak into your microphone when prompted; watch the console logs to see the entire flow—speech recognition, confidence check, embedding & search, and final action or retry message.
+### 2. Set Up Environment
+Create a .env file with your Azure Speech, Azure OpenAI, Azure Search, and Cosmos DB credentials.
+Install Python packages:
+pip install -r requirements.txt
+### 3. Prepare Your Data
+(Optional) Insert initial documents or records in your database (e.g., user entries, knowledge articles).
+### 4. Run the Application
+python app.py
