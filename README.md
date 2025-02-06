@@ -1,6 +1,6 @@
 # VoiceMedAgent
 
-##VoiceMedAgent – Overview
+#VoiceMedAgent – Overview
 VoiceMedAgent is a proof-of-concept (POC) application demonstrating how to build a voice-driven workflow leveraging Azure services:
 
 Speech Capture (User → Application/Device):
@@ -9,21 +9,21 @@ The user speaks into a device or application. Audio is captured and prepared for
 Speech-to-Text (Azure AI Speech):
 The audio is sent to Azure’s Speech service, which returns text along with a confidence score indicating transcription accuracy.
 
-##Confidence Scoring & Retry Loop:
+#Confidence Scoring & Retry Loop:
 
 If High Confidence, the system proceeds to the next step.
 If Low Confidence, the user is prompted to retry or clarify their request.
 Transcription Processing:
 The validated transcript is passed along for query embedding and further analysis.
 
-##Query Embeddings & AI Search:
+#Query Embeddings & AI Search:
 
 Query Embeddings: The text is transformed into vector embeddings (e.g., using Azure OpenAI).
 Azure AI Search: These embeddings are used to find the most relevant documents or data in your store.
 Slot Matching / Intent Extraction:
 Using the search results and any additional AI logic, the system extracts user commands or specific entities (slots) (e.g., user’s name, action to perform, etc.).
 
-##Feedback & Actions:
+#Feedback & Actions:
 
 If confidence is high, the action (e.g., “move user,” “add user,” “update record”) proceeds.
 If further clarification is needed, the user is notified to restate or provide additional info.
@@ -42,7 +42,7 @@ Healthcare: Retrieve patient info or schedule updates via voice commands.
 Customer Support: Guide agents through knowledge bases by spoken queries.
 Workforce Management: Perform user/group updates (e.g., “move user from one team to another”) hands-free.
 Field Operations: Voice-based info lookups while on the go, without needing a keyboard.
-##Getting Started
+#Getting Started
 Clone the Repo:
 
 bash
