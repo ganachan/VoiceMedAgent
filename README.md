@@ -58,7 +58,7 @@ It listens to user speech, transcribes it, analyzes intent, and then takes autom
 
 Here is the high-level architecture:
 
-![VoiceMedAgent Architecture](architecture/architecture.png)
+![VoiceMedAgent Architecture](architecture/Architecture.png)
 
 ## Getting Started
 
