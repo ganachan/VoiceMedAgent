@@ -54,6 +54,12 @@ It listens to user speech, transcribes it, analyzes intent, and then takes autom
 
 ---
 
+# VoiceMedAgent
+
+Here is the high-level architecture:
+
+![VoiceMedAgent Architecture](architecture/architecture.png)
+
 ## Getting Started
 
 ### 1. Clone the Repo
