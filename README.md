@@ -70,3 +70,32 @@ pip install -r requirements.txt
 (Optional) Insert initial documents or records in your database (e.g., user entries, knowledge articles).
 ### 4. Run the Application
 python app.py
+
+## Database Workflows
+
+In addition to searching and retrieving data, **VoiceMedAgent** also supports write operations on Cosmos DB (or any Mongo-compatible store). For example:
+
+1. **Create a Group**  
+   - If you say something like:  
+     > “Create a new group called **Marketing**.”  
+   - The application will parse the intent (e.g., `"intent": "create group"`) and directly call Cosmos DB to insert a new document that represents this group.
+
+2. **Add a User to a Group**  
+   - If you say:  
+     > “Add user **Alice** to the **Marketing** group.”  
+   - The system’s intent extraction maps this to an `"add user"` operation.  
+   - It then performs the required database write to place **Alice** in the **Marketing** group within Cosmos DB.
+
+### Implementation Details
+
+- **Intent Extraction**: Azure OpenAI (or another NLP model) identifies the **intent** and **slots** (e.g., user = “Alice”, group = “Marketing”).  
+- **Cosmos DB Write Operation**:  
+  1. The code constructs a MongoDB (Cosmos DB) query, such as:
+     ```python
+     new_doc = {"user": "Alice", "group": "Marketing"}
+     users_collection.insert_one(new_doc)
+     ```
+  2. If successful, you’ll see a confirmation message in the logs (e.g., “Added user ‘Alice’ to group ‘Marketing’”).
+
+With this approach, **VoiceMedAgent** not only **reads** from your database but also **writes** to it, making it suitable for real-time user management, group creation, and other administrative tasks.
+
