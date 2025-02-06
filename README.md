@@ -1,7 +1,7 @@
 # VoiceMedAgent
 
 #VoiceMedAgent – Overview
-VoiceMedAgent is a proof-of-concept (POC) application demonstrating how to build a voice-driven workflow leveraging Azure services:
+VoiceMedAgent is a proof-of-concept (POC) application that demonstrates a voice-driven workflow using several Azure services. It listens to user speech, transcribes it, analyzes intent, and then takes automated actions or returns relevant data—entirely by voice.
 
 Speech Capture (User → Application/Device):
 The user speaks into a device or application. Audio is captured and prepared for transcription.
